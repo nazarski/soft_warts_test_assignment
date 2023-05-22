@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soft_warts_test_task/pages/todo_list_page/todo_list_page.dart';
 import 'package:soft_warts_test_task/pages/widgets/app_elevated_button.dart';
-import 'package:soft_warts_test_task/resources/app_colors.dart';
+import 'package:soft_warts_test_task/pages/widgets/background_gradient_decoration.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,21 +10,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.secondary,
-            AppColors.secondaryVariant,
-          ],
-        ),
-      ),
+    return BackgroundGradientDecoration(
       child: SafeArea(
         child: Center(
           child: AppElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, TodoListPage.routeName, (route) => false);
+            },
             child: const Text('Вхід'),
           ),
         ),
