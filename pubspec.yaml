@@ -36,7 +36,7 @@ flutter:
   fonts:
      - family: SF UI Display
        fonts:
-         - asset: fonts/sf-ui-display-medium.otf
+         - asset: assets/fonts/sf-ui-display-medium.otf
            weight: 500
-         - asset: fonts/sf-ui-display-semibold.otf
+         - asset: assets/fonts/sf-ui-display-semibold.otf
            weight: 600
