@@ -20,7 +20,9 @@ class TodoListBuilder extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16),
       itemBuilder: (context, index) {
         final todo = listOfTodos[index];
-        final finishDate = DateFormat('dd.MM.yyyy').format(todo.finishDate);
+        final finishDate = DateFormat('dd.MM.yyyy').format(
+          todo.finishDate ?? DateTime.now(),
+        );
         return Container(
           height: 64,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -68,17 +70,17 @@ class TodoListBuilder extends StatelessWidget {
                   checkColor: AppColors.secondaryVariant,
                   fillColor: const MaterialStatePropertyAll(AppColors.disabled),
                   side: MaterialStateBorderSide.resolveWith(
-                        (states) =>
-                    const BorderSide(color: AppColors.secondaryVariant),
+                    (states) =>
+                        const BorderSide(color: AppColors.secondaryVariant),
                   ),
                   value: todo.completed,
                   onChanged: (bool? value) {
                     context.read<TodoListBloc>().add(
-                      UpdateTodoCheckbox(
-                        todo,
-                        value!,
-                      ),
-                    );
+                          UpdateTodoCheckbox(
+                            todo,
+                            value!,
+                          ),
+                        );
                   },
                 ),
               ),

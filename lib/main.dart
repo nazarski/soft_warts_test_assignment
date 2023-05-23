@@ -27,8 +27,13 @@ class ToDoShechka extends StatelessWidget {
               ),
           ),
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
           onGenerateRoute: AppRouter.generateRoute,
+          theme: ThemeData(
+            inputDecorationTheme: InputDecorationTheme(
+              border: InputBorder.none,
+            )
+          ),
         ),
       ),
     );

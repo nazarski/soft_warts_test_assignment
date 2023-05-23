@@ -23,7 +23,7 @@ class TodoListBloc extends Bloc<TodoListEvent, TodoListState> {
     UpdateTodoCheckbox event,
     Emitter emit,
   ) {
-    final updatedTodo = event.todo.copyWith(isActive: event.isActive);
+    final updatedTodo = event.todo.copyWith(completed: event.isActive);
     final updatedList = state.listOfTodos.map((todo) {
       return todo.taskId == updatedTodo.taskId ? updatedTodo : todo;
     }).toList();

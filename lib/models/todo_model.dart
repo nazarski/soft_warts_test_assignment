@@ -9,11 +9,10 @@ class TodoModel {
   final int type;
   final String description;
   final String file;
-  final DateTime finishDate;
+  final DateTime? finishDate;
   final bool urgent;
-  final DateTime syncTime;
+  final DateTime? syncTime;
 
-//<editor-fold desc="Data Methods">
   const TodoModel({
     required this.taskId,
     required this.completed,
@@ -24,6 +23,18 @@ class TodoModel {
     required this.finishDate,
     required this.urgent,
     required this.syncTime,
+  });
+
+  const TodoModel.empty({
+    this.taskId = '',
+    this.completed = false,
+    this.name = '',
+    this.type = 1,
+    this.description = '',
+    this.file = '',
+    this.finishDate,
+    this.urgent = false,
+    this.syncTime,
   });
 
   @override
@@ -71,7 +82,7 @@ class TodoModel {
 
   TodoModel copyWith({
     String? taskId,
-    bool? isActive,
+    bool? completed,
     String? name,
     int? type,
     String? description,
@@ -82,7 +93,7 @@ class TodoModel {
   }) {
     return TodoModel(
       taskId: taskId ?? this.taskId,
-      completed: isActive ?? this.completed,
+      completed: completed ?? this.completed,
       name: name ?? this.name,
       type: type ?? this.type,
       description: description ?? this.description,

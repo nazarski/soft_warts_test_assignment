@@ -11,15 +11,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundGradientDecoration(
-      child: SafeArea(
-        child: Center(
-          child: AppElevatedButton(
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, TodoListPage.routeName, (route) => false);
-            },
-            child: const Text('Вхід'),
-          ),
+      child: Center(
+        child: AppElevatedButton(
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, TodoListPage.routeName, (route) => false);
+          },
+          child: const Text('Вхід'),
         ),
       ),
     );

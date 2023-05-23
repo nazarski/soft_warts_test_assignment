@@ -20,4 +20,10 @@ class ManageTodosData {
       'status': status,
     });
   }
+
+  Future<void>createTodo({required TodoModel todo})async{
+    final data = todo.toMap();
+    await _dio.post('/tasks', data: data);
+
+  }
 }

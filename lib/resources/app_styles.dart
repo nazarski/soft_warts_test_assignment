@@ -24,9 +24,11 @@ class AppStyles {
   static const TextStyle semiBold18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
+    color: AppColors.secondaryVariant,
   );
   static const TextStyle semiBold24 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w600,
+    color: AppColors.secondaryVariant,
   );
 }
