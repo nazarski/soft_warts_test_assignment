@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soft_warts_test_task/resources/app_colors.dart';
 
 class AppStyles {
   AppStyles._();
@@ -13,13 +14,13 @@ class AppStyles {
   );
 
   static const TextStyle semiBold11 = TextStyle(
-    fontSize: 11,
-    fontWeight: FontWeight.w600,
-  );
+      fontSize: 11,
+      fontWeight: FontWeight.w600,
+      color: AppColors.secondaryVariant);
   static const TextStyle semiBold16 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-  );
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: AppColors.secondaryVariant);
   static const TextStyle semiBold18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,

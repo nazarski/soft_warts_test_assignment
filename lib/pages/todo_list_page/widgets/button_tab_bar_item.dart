@@ -9,7 +9,7 @@ class ButtonTabBarItem extends StatelessWidget {
   });
 
   final ButtonStyle style;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
 
   @override
