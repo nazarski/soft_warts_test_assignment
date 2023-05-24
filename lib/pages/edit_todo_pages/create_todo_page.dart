@@ -1,7 +1,7 @@
-import 'dart:convert';
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
 import 'package:soft_warts_test_task/bloc/todo_list_bloc/todo_list_bloc.dart';
@@ -17,7 +17,6 @@ import 'package:soft_warts_test_task/pages/widgets/background_gradient_decoratio
 import 'package:soft_warts_test_task/repositories/manage_todos_repository.dart';
 import 'package:soft_warts_test_task/resources/app_colors.dart';
 import 'package:soft_warts_test_task/resources/app_styles.dart';
-import 'package:image_picker/image_picker.dart';
 
 class CreateTodoPage extends StatefulWidget {
   const CreateTodoPage({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ManageSingleTodoBloc(context.read<ManageTodosRepository>()),
+          ManageSingleTodoBloc(repository: context.read<ManageTodosRepository>()),
       child: BackgroundGradientDecoration(
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -56,6 +55,9 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
               controller: _nameController,
               style: AppStyles.semiBold24,
               cursorColor: AppColors.secondaryVariant,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(90)
+              ],
               decoration: const InputDecoration(
                 hintText: 'Назва завдання...',
                 hintStyle: AppStyles.semiBold24,

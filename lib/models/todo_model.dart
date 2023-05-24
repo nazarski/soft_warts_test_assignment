@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:typed_data';
+
 
 class TodoModel {
   final String taskId;
@@ -60,9 +58,9 @@ class TodoModel {
       'type': type,
       'description': description,
       'file': file,
-      'finishDate': finishDate,
+      'finishDate': finishDate?.toIso8601String(),
       'urgent': urgent ? 1 : 0,
-      'syncTime': syncTime,
+      'syncTime': syncTime?.toIso8601String(),
     };
   }
 

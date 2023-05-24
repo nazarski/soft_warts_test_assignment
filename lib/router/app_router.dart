@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:soft_warts_test_task/models/todo_model.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/create_todo_page.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/edit_todo_page.dart';
 import 'package:soft_warts_test_task/pages/home_page/home_page.dart';
@@ -31,7 +32,9 @@ class AppRouter {
         );
       case EditTodoPage.routeName:
         return PageTransition(
-          child: const EditTodoPage(),
+          child: EditTodoPage(
+            todoToEdit: arguments as TodoModel,
+          ),
           type: PageTransitionType.rightToLeft,
         );
       default:

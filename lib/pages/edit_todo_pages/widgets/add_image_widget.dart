@@ -38,6 +38,7 @@ class AddImageWidget extends StatelessWidget {
                   'Вкладене зображення',
                   style: AppStyles.semiBold18,
                 ),
+                const SizedBox(height: 12,),
                 Row(
                   children: [
                     Expanded(

@@ -43,20 +43,22 @@ class _FinishDateSelectorState extends State<FinishDateSelector> {
             const SizedBox(
               width: 8,
             ),
-            BlocBuilder<ManageSingleTodoBloc, ManageSingleTodoState>(
-                buildWhen: (oldState, newState) {
-              return oldState.todo.finishDate != newState.todo.finishDate;
-            }, builder: (context, state) {
-              final finishDate = state.todo.finishDate != null
-                  ? DateFormat('dd MMMM yyyy').format(
-                      state.todo.finishDate!,
-                    )
-                  : '';
-              return Text(
-                finishDate,
-                style: AppStyles.semiBold18,
-              );
-            })
+            Flexible(
+              child: BlocBuilder<ManageSingleTodoBloc, ManageSingleTodoState>(
+                  buildWhen: (oldState, newState) {
+                return oldState.todo.finishDate != newState.todo.finishDate;
+              }, builder: (context, state) {
+                final finishDate = state.todo.finishDate != null
+                    ? DateFormat('dd MMMM yyyy').format(
+                        state.todo.finishDate!,
+                      )
+                    : '';
+                return Text(
+                  finishDate,
+                  style: AppStyles.semiBold18,
+                );
+              }),
+            )
           ],
         ),
       ),

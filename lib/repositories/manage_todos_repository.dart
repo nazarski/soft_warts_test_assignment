@@ -21,6 +21,9 @@ class ManageTodosRepository {
   Future<String> pickImage() async {
     final XFile? image = await _imagePicker.pickImage(
       source: ImageSource.gallery,
+      maxHeight: 100,
+      maxWidth: 100,
+      imageQuality: 1
     );
     if (image == null) return '';
     final bytes = await image.readAsBytes();
@@ -30,4 +33,12 @@ class ManageTodosRepository {
   Future<void> createTodo({required TodoModel todo}) async {
     await _remoteData.createTodo(todo: todo);
   }
+  Future<void> deleteTodo({required String todoId})async{
+    await _remoteData.deleteTodo(todoId: todoId);
+  }
+
+  Future<void> updateTodo({required TodoModel todo})async{
+    await _remoteData.updateTodo(todo: todo);
+  }
+
 }
