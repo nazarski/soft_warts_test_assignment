@@ -2,11 +2,11 @@ part of 'connectivity_bloc.dart';
 
 @immutable
 class ConnectivityState {
-final bool hasConnection;
+  final bool hasConnection;
 
   const ConnectivityState({this.hasConnection = false});
 
-ConnectivityState copyWith({
+  ConnectivityState copyWith({
     bool? hasConnection,
   }) {
     return ConnectivityState(
@@ -14,4 +14,3 @@ ConnectivityState copyWith({
     );
   }
 }
-

@@ -47,17 +47,9 @@ class TodoModel {
 
   @override
   String toString() {
-    return 'TodoModel{' +
-        ' taskId: $taskId,' +
-        ' status: $completed,' +
-        ' name: $name,' +
-        ' type: $type,' +
-        ' description: $description,' +
-        ' file: $file,' +
-        ' finishDate: $finishDate,' +
-        ' urgent: $urgent,' +
-        ' syncTime: $syncTime,' +
-        '}';
+    return 'TodoModel{ taskId: $taskId, status: $completed, name: $name, '
+        'type: $type, description: $description, file: $file, '
+        'finishDate: $finishDate, urgent: $urgent, syncTime: $syncTime,}';
   }
 
   Map<String, dynamic> toMap() {

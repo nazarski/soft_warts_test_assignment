@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:soft_warts_test_task/resources/app_colors.dart';
 
@@ -35,7 +33,8 @@ class _CustomRadioButtonState extends State<CustomRadioButton>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(_animationController);
+    _fadeAnimation =
+        Tween<double>(begin: 0, end: 1).animate(_animationController);
 
     if (isSelected) {
       _animationController.forward(from: 1);
@@ -57,10 +56,9 @@ class _CustomRadioButtonState extends State<CustomRadioButton>
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () {
-          widget.onTap(widget.type);
+        widget.onTap(widget.type);
       },
       child: Container(
         padding: const EdgeInsets.all(8),
@@ -94,5 +92,3 @@ class _CustomRadioButtonState extends State<CustomRadioButton>
     super.dispose();
   }
 }
-
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
+import 'package:soft_warts_test_task/constants/strings.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/custom_radio_button.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_editor_wrap.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_type_radio_item.dart';
@@ -25,7 +26,7 @@ class TodoTypeRadioSelector extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TodoTypeRadioItem(
-                    text: 'Робочі',
+                    text: ConstantStrings.work,
                     radio: CustomRadioButton(
                       type: 1,
                       selectedType: typeValue,
@@ -37,7 +38,7 @@ class TodoTypeRadioSelector extends StatelessWidget {
                     ),
                   ),
                   TodoTypeRadioItem(
-                    text: 'Особисті',
+                    text: ConstantStrings.personal,
                     radio: CustomRadioButton(
                       type: 2,
                       selectedType: typeValue,

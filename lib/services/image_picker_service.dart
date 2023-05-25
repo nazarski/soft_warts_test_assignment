@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:image_picker/image_picker.dart';
 
-class ImagePickerService{
+class ImagePickerService {
   final _imagePicker = ImagePicker();
 
   ///Pick an Image and encode

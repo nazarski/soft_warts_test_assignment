@@ -84,7 +84,6 @@ class TodoListBloc extends Bloc<TodoListEvent, TodoListState> {
       ),
     );
     try {
-      print('start to filter');
       final List<TodoModel> listOfTodos;
       if (typeIndex > 0) {
         listOfTodos =

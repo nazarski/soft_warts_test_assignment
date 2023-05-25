@@ -17,7 +17,9 @@ class TodoTypeRadioItem extends StatelessWidget {
     return Row(
       children: [
         radio,
-        const SizedBox(width: 8,),
+        const SizedBox(
+          width: 8,
+        ),
         Text(
           text,
           style: AppStyles.semiBold18,

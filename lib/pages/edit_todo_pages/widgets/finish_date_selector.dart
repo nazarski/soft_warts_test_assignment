@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
+import 'package:soft_warts_test_task/constants/strings.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_editor_wrap.dart';
 import 'package:soft_warts_test_task/resources/app_styles.dart';
+import 'package:soft_warts_test_task/utils/date_helper.dart';
 
 class FinishDateSelector extends StatefulWidget {
   const FinishDateSelector({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _FinishDateSelectorState extends State<FinishDateSelector> {
               days: 30,
             ),
           ),
-          helpText: 'Коли плануєте завершити?',
+          helpText: ConstantStrings.whenDoYouPlanToFinish,
         );
         if (newDate != null && mounted) {
           context.read<ManageSingleTodoBloc>().add(SelectFinishDate(newDate));
@@ -37,7 +38,7 @@ class _FinishDateSelectorState extends State<FinishDateSelector> {
         child: Row(
           children: [
             const Text(
-              'Дата завершення:',
+              ConstantStrings.finishDate,
               style: AppStyles.semiBold18,
             ),
             const SizedBox(
@@ -48,11 +49,8 @@ class _FinishDateSelectorState extends State<FinishDateSelector> {
                   buildWhen: (oldState, newState) {
                 return oldState.todo.finishDate != newState.todo.finishDate;
               }, builder: (context, state) {
-                final finishDate = state.todo.finishDate != null
-                    ? DateFormat('dd MMMM yyyy').format(
-                        state.todo.finishDate!,
-                      )
-                    : '';
+                final finishDate =
+                    formatDateOrEmptyString(state.todo.finishDate);
                 return Text(
                   finishDate,
                   style: AppStyles.semiBold18,

@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-
 ///Colors will be used in app UI
-class AppColors{
-
+class AppColors {
   static const Color primary = Color(0xffDBDBDB);
   static const Color primaryVariant = Color(0xffFFD600);
 
@@ -12,5 +10,4 @@ class AppColors{
 
   static const Color accentRed = Color(0xffFF8989);
   static const Color disabled = Color(0xffFBEFB4);
-
 }

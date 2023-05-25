@@ -31,10 +31,9 @@ class SelectFinishDate extends ManageSingleTodoEvent {
 
 class MakeUrgent extends ManageSingleTodoEvent {}
 
-class DeleteTodo extends ManageSingleTodoEvent {
-}
+class DeleteTodo extends ManageSingleTodoEvent {}
 
-class UpdateTodo extends ManageSingleTodoEvent{
+class UpdateTodo extends ManageSingleTodoEvent {
   final String todoName;
   final String todoDescription;
 
@@ -44,7 +43,7 @@ class UpdateTodo extends ManageSingleTodoEvent{
   });
 }
 
-class ChangeHasConnectionFlagSingle extends ManageSingleTodoEvent{
+class ChangeHasConnectionFlagSingle extends ManageSingleTodoEvent {
   final bool hasConnection;
 
   ChangeHasConnectionFlagSingle(this.hasConnection);

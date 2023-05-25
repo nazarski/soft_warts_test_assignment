@@ -38,8 +38,8 @@ class ManageTodosData {
 
   Future<void> updateTodo({required TodoModel todo}) async {
     final data = todo.toMap();
-   final response = await _dio.put('/tasks/${todo.taskId}', data: data);
-   debugPrint(response.toString());
+    final response = await _dio.put('/tasks/${todo.taskId}', data: data);
+    debugPrint(response.toString());
   }
 
   List<TodoModel> _mapTodosResponse(Response response) {

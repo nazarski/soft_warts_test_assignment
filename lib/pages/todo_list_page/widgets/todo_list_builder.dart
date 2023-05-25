@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:soft_warts_test_task/bloc/todo_list_bloc/todo_list_bloc.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/edit_todo_page.dart';
 import 'package:soft_warts_test_task/resources/app_colors.dart';
 import 'package:soft_warts_test_task/resources/app_styles.dart';
+import 'package:soft_warts_test_task/utils/date_helper.dart';
 
 class TodoListBuilder extends StatelessWidget {
   const TodoListBuilder({
@@ -21,9 +21,7 @@ class TodoListBuilder extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16),
       itemBuilder: (context, index) {
         final todo = listOfTodos[index];
-        final finishDate = DateFormat('dd.MM.yyyy').format(
-          todo.finishDate ?? DateTime.now(),
-        );
+        final finishDate = formatDateOrNow(todo.finishDate);
         return GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(

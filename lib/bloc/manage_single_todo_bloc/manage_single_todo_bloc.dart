@@ -45,6 +45,7 @@ class ManageSingleTodoBloc
           name: event.todoName,
           description: event.todoDescription,
           syncTime: DateTime.now());
+      log('my current connection state is $_hasConnection');
       await repository.putLocalTodo(todo: todo);
       if (_hasConnection) {
         await repository.createServerTodo(todo: todo);

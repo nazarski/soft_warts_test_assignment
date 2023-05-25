@@ -1,4 +1,4 @@
-enum FetchStatus{
+enum FetchStatus {
   initial,
   loading,
   data,

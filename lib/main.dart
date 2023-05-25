@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:soft_warts_test_task/bloc/connectivity_bloc/connectivity_bloc.dart';
-import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
 import 'package:soft_warts_test_task/bloc/todo_list_bloc/todo_list_bloc.dart';
 import 'package:soft_warts_test_task/data/local/isar_db.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';

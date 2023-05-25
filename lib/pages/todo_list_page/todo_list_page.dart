@@ -17,15 +17,11 @@ class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ConnectivityBloc, ConnectivityState>(
-      listenWhen: (oldState, newState) {
-        return oldState.hasConnection != newState.hasConnection;
-      },
       listener: (context, state) {
         context
             .read<TodoListBloc>()
             .add(ChangeHasConnectionFlagList(state.hasConnection));
-        if(state.hasConnection){
-          print('now i have a connection, lets sync');
+        if (state.hasConnection) {
           context.read<TodoListBloc>().add(SyncTodosAndEmit());
         }
       },
@@ -38,8 +34,8 @@ class TodoListPage extends StatelessWidget {
               },
               backgroundColor: AppColors.primaryVariant,
               foregroundColor: AppColors.secondaryVariant,
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24)),
               child: const Icon(
                 Icons.add,
                 size: 36,
@@ -56,18 +52,15 @@ class TodoListPage extends StatelessWidget {
               child: BlocBuilder<TodoListBloc, TodoListState>(
                 builder: (context, state) {
                   return switch (state.status) {
-                    FetchStatus.loading =>
-                    const Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                    FetchStatus.error =>
-                    const Center(
-                      child: Icon(Icons.error),
-                    ),
-                    _ =>
-                        TodoListBuilder(
-                          listOfTodos: state.listOfTodos,
-                        ),
+                    FetchStatus.loading => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    FetchStatus.error => const Center(
+                        child: Icon(Icons.error),
+                      ),
+                    _ => TodoListBuilder(
+                        listOfTodos: state.listOfTodos,
+                      ),
                   };
                 },
               ),

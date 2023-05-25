@@ -1,4 +1,3 @@
-
 import 'package:soft_warts_test_task/data/local/isar_db.dart';
 import 'package:soft_warts_test_task/data/remote/manage_todos_data.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
@@ -45,12 +44,12 @@ class ManageTodosRepository {
     await _isarDb.putSingleTodo(todo: todo);
   }
 
-  Future<void> deleteLocalTodo({required String todoId})async{
+  Future<void> deleteLocalTodo({required String todoId}) async {
     await _isarDb.deleteSingleTodo(todoId: todoId);
   }
 
-  Future<List<TodoModel>> filterNonDeletedTodosByType({required int type}) async {
+  Future<List<TodoModel>> filterNonDeletedTodosByType(
+      {required int type}) async {
     return await _isarDb.filterTodoByType(type: type);
   }
-
 }
