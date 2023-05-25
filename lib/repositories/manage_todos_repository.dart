@@ -1,44 +1,56 @@
-import 'dart:convert';
 
-import 'package:image_picker/image_picker.dart';
+import 'package:soft_warts_test_task/data/local/isar_db.dart';
 import 'package:soft_warts_test_task/data/remote/manage_todos_data.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
 
 class ManageTodosRepository {
-  final _imagePicker = ImagePicker();
+  final IsarDb _isarDb;
   final _remoteData = ManageTodosData();
 
-  Future<List<TodoModel>> getAllTodos() async {
+  ManageTodosRepository(this._isarDb);
+
+  ///Server CRUD operations
+  Future<List<TodoModel>> getAllServerTodos() async {
     return await _remoteData.getAllTodos();
   }
 
-  Future<void> updateTodoStatus(
+  Future<void> updateServerTodoStatus(
       {required String taskId, required bool completed}) async {
     await _remoteData.updateTodoStatus(
         taskId: taskId, status: completed ? 2 : 1);
   }
 
-  Future<String> pickImage() async {
-    final XFile? image = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-      maxHeight: 100,
-      maxWidth: 100,
-      imageQuality: 1
-    );
-    if (image == null) return '';
-    final bytes = await image.readAsBytes();
-    return base64Encode(bytes);
-  }
-
-  Future<void> createTodo({required TodoModel todo}) async {
+  Future<void> createServerTodo({required TodoModel todo}) async {
     await _remoteData.createTodo(todo: todo);
   }
-  Future<void> deleteTodo({required String todoId})async{
+
+  Future<void> deleteServerTodo({required String todoId}) async {
     await _remoteData.deleteTodo(todoId: todoId);
   }
 
-  Future<void> updateTodo({required TodoModel todo})async{
+  Future<void> updateServerTodo({required TodoModel todo}) async {
     await _remoteData.updateTodo(todo: todo);
+  }
+
+  ///Local db CRUD operations
+  Future<List<TodoModel>> getAllLocalTodos() async {
+    return await _isarDb.getAllTodosFromLocal();
+  }
+
+  Future<List<TodoModel>> getAllNonDeletedLocalTodos() async {
+    return await _isarDb.getAllNonDeletedTodosFromLocal();
+  }
+
+  Future<void> putLocalTodo({required TodoModel todo}) async {
+    await _isarDb.putSingleTodo(todo: todo);
+  }
+
+  Future<void> deleteLocalTodo({required String todoId})async{
+    await _isarDb.deleteSingleTodo(todoId: todoId);
+  }
+
+  Future<List<TodoModel>> filterNonDeletedTodosByType({required int type}) async {
+    return await _isarDb.filterTodoByType(type: type);
   }
 
 }

@@ -43,3 +43,9 @@ class UpdateTodo extends ManageSingleTodoEvent{
     required this.todoDescription,
   });
 }
+
+class ChangeHasConnectionFlagSingle extends ManageSingleTodoEvent{
+  final bool hasConnection;
+
+  ChangeHasConnectionFlagSingle(this.hasConnection);
+}

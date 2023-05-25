@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/enums/fetch_status.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
 import 'package:soft_warts_test_task/repositories/manage_todos_repository.dart';
+import 'package:soft_warts_test_task/services/image_picker_service.dart';
 
 part 'manage_single_todo_event.dart';
 
@@ -15,11 +16,14 @@ class ManageSingleTodoBloc
     extends Bloc<ManageSingleTodoEvent, ManageSingleTodoState> {
   final ManageTodosRepository repository;
   final TodoModel? initialTodo;
+  final _imagePickerService = ImagePickerService();
+  bool _hasConnection = false;
 
   ManageSingleTodoBloc({required this.repository, this.initialTodo})
       : super(initialTodo != null
             ? ManageSingleTodoState(todo: initialTodo)
             : const ManageSingleTodoState()) {
+    on<ChangeHasConnectionFlagSingle>(_changeHasConnectionFlag);
     on<ChangeType>(_changeType);
     on<SelectFinishDate>(_selectFinishDate);
     on<MakeUrgent>(_makeUrgent);
@@ -30,15 +34,21 @@ class ManageSingleTodoBloc
     on<UpdateTodo>(_updateTodo);
   }
 
+  void _changeHasConnectionFlag(ChangeHasConnectionFlagSingle event, _) {
+    _hasConnection = event.hasConnection;
+  }
+
   Future<void> _updateTodo(UpdateTodo event, Emitter emit) async {
     emit(state.copyWith(status: FetchStatus.loading));
     try {
       final todo = state.todo.copyWith(
-        name: event.todoName,
-        description: event.todoDescription,
-      );
-      print(todo);
-      await repository.updateTodo(todo: todo);
+          name: event.todoName,
+          description: event.todoDescription,
+          syncTime: DateTime.now());
+      await repository.putLocalTodo(todo: todo);
+      if (_hasConnection) {
+        await repository.createServerTodo(todo: todo);
+      }
       emit(state.copyWith(status: FetchStatus.data));
     } on Exception catch (error) {
       log(error.toString());
@@ -49,7 +59,15 @@ class ManageSingleTodoBloc
   Future<void> _deleteTodo(_, Emitter emit) async {
     emit(state.copyWith(status: FetchStatus.loading));
     try {
-      await repository.deleteTodo(todoId: state.todo.taskId);
+      if (!_hasConnection) {
+        final updatedTodo = state.todo
+            .copyWith(lastDeletedAt: DateTime.now(), syncTime: DateTime.now());
+        await repository.putLocalTodo(todo: updatedTodo);
+      } else {
+        await repository.deleteLocalTodo(todoId: state.todo.taskId);
+        await repository.deleteServerTodo(todoId: state.todo.taskId);
+      }
+
       emit(state.copyWith(status: FetchStatus.data));
     } on Exception catch (error) {
       log(error.toString());
@@ -66,7 +84,10 @@ class ManageSingleTodoBloc
         taskId: DateTime.now().millisecondsSinceEpoch.toString(),
         syncTime: DateTime.now(),
       );
-      await repository.createTodo(todo: todo);
+      await repository.putLocalTodo(todo: todo);
+      if (_hasConnection) {
+        await repository.createServerTodo(todo: todo);
+      }
       emit(state.copyWith(status: FetchStatus.data));
     } on Exception catch (error) {
       log(error.toString());
@@ -80,7 +101,7 @@ class ManageSingleTodoBloc
   }
 
   Future<void> _pickImage(_, Emitter emit) async {
-    final image = await repository.pickImage();
+    final image = await _imagePickerService.pickImage();
     if (image.isNotEmpty) {
       final updatedTodo = state.todo.copyWith(file: image);
       emit(state.copyWith(todo: updatedTodo));

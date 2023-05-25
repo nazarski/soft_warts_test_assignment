@@ -3,12 +3,10 @@ part of 'todo_list_bloc.dart';
 @immutable
 abstract class TodoListEvent {}
 
-class GetAllTodos extends TodoListEvent{}
-
 class FilterTodos extends TodoListEvent{
-  final int todoType;
+  final int? todoType;
 
-  FilterTodos(this.todoType);
+  FilterTodos({this.todoType});
 
 }
 class UpdateTodoCheckbox extends TodoListEvent{
@@ -17,4 +15,13 @@ class UpdateTodoCheckbox extends TodoListEvent{
 
   UpdateTodoCheckbox(this.todo, this.isActive);
 
+}
+class SyncTodosAndEmit extends TodoListEvent{
+}
+
+
+class ChangeHasConnectionFlagList extends TodoListEvent{
+  final bool hasConnection;
+
+  ChangeHasConnectionFlagList(this.hasConnection);
 }

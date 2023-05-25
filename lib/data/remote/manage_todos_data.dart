@@ -24,8 +24,12 @@ class ManageTodosData {
   }
 
   Future<void> createTodo({required TodoModel todo}) async {
-    final data = todo.toMap();
-    await _dio.post('/tasks', data: [data]);
+    try {
+      final data = todo.toMap();
+      await _dio.post('/tasks', data: [data]);
+    } on Exception catch (e) {
+      log(e.toString());
+    }
   }
 
   Future<void> deleteTodo({required String todoId}) async {

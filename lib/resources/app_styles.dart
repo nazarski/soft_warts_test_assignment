@@ -31,4 +31,34 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.secondaryVariant,
   );
+
+  static const ButtonStyle activeTabButtonStyle = ButtonStyle(
+    backgroundColor: MaterialStatePropertyAll(AppColors.disabled),
+    elevation: MaterialStatePropertyAll(4),
+    foregroundColor: MaterialStatePropertyAll(AppColors.secondaryVariant),
+    padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 14)),
+    textStyle: MaterialStatePropertyAll(AppStyles.medium18),
+    shape: MaterialStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(24),
+        ),
+      ),
+    ),
+  );
+  static const ButtonStyle inactiveTabButtonStyle = ButtonStyle(
+    backgroundColor: MaterialStatePropertyAll(AppColors.primary),
+    foregroundColor: MaterialStatePropertyAll(AppColors.secondaryVariant),
+    padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 14)),
+    elevation: MaterialStatePropertyAll(0),
+    textStyle: MaterialStatePropertyAll(AppStyles.medium18),
+    shape: MaterialStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(24),
+        ),
+      ),
+    ),
+  );
+
 }

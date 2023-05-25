@@ -1,6 +1,11 @@
+import 'package:isar/isar.dart';
 
+part 'todo_model.g.dart';
 
+@collection
 class TodoModel {
+  final Id? id;
+  @Index(unique: true, replace: true)
   final String taskId;
   final bool completed;
   final String name;
@@ -10,20 +15,24 @@ class TodoModel {
   final DateTime? finishDate;
   final bool urgent;
   final DateTime? syncTime;
+  final DateTime? lastDeletedAt;
 
   const TodoModel({
+    this.id,
     required this.taskId,
     required this.completed,
     required this.name,
     required this.type,
     required this.description,
     required this.file,
-    required this.finishDate,
+    this.finishDate,
     required this.urgent,
-    required this.syncTime,
+    this.syncTime,
+    this.lastDeletedAt,
   });
 
   const TodoModel.empty({
+    this.id,
     this.taskId = '',
     this.completed = false,
     this.name = '',
@@ -33,6 +42,7 @@ class TodoModel {
     this.finishDate,
     this.urgent = false,
     this.syncTime,
+    this.lastDeletedAt,
   });
 
   @override
@@ -88,6 +98,7 @@ class TodoModel {
     DateTime? finishDate,
     bool? urgent,
     DateTime? syncTime,
+    DateTime? lastDeletedAt,
   }) {
     return TodoModel(
       taskId: taskId ?? this.taskId,
@@ -99,6 +110,7 @@ class TodoModel {
       finishDate: finishDate ?? this.finishDate,
       urgent: urgent ?? this.urgent,
       syncTime: syncTime ?? this.syncTime,
+      lastDeletedAt: lastDeletedAt ?? this.lastDeletedAt,
     );
   }
 }

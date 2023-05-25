@@ -42,3 +42,16 @@ class AppRouter {
     }
   }
 }
+// BlocListener<ConnectivityBloc, ConnectivityState>(
+// listenWhen: (oldState, newState) {
+// return oldState.hasConnection != newState.hasConnection;
+// },
+// listener: (context, state) {
+// context
+//     .read<ManageSingleTodoBloc>()
+//     .add(ChangeHasConnectionFlagSingle(state.hasConnection));
+// context
+//     .read<TodoListBloc>()
+//     .add(ChangeHasConnectionFlagList(state.hasConnection));
+// },
+// child:
