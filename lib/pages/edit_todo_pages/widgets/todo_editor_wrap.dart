@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soft_warts_test_task/resources/app_colors.dart';
+import 'package:soft_warts_test_task/core/resources/app_colors.dart';
 
 class TodoEditorWrap extends StatelessWidget {
   const TodoEditorWrap({Key? key, required this.child}) : super(key: key);

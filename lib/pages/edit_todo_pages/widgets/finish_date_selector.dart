@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
-import 'package:soft_warts_test_task/constants/strings.dart';
+import 'package:soft_warts_test_task/core/constants/strings.dart';
+import 'package:soft_warts_test_task/core/resources/app_styles.dart';
+import 'package:soft_warts_test_task/core/utils/date_helper.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_editor_wrap.dart';
-import 'package:soft_warts_test_task/resources/app_styles.dart';
-import 'package:soft_warts_test_task/utils/date_helper.dart';
 
 class FinishDateSelector extends StatefulWidget {
   const FinishDateSelector({Key? key}) : super(key: key);

@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/connectivity_bloc/connectivity_bloc.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
 import 'package:soft_warts_test_task/bloc/todo_list_bloc/todo_list_bloc.dart';
-import 'package:soft_warts_test_task/constants/strings.dart';
-import 'package:soft_warts_test_task/enums/fetch_status.dart';
+import 'package:soft_warts_test_task/core/constants/strings.dart';
+import 'package:soft_warts_test_task/core/enums/fetch_status.dart';
+import 'package:soft_warts_test_task/core/resources/app_colors.dart';
+import 'package:soft_warts_test_task/core/resources/app_styles.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/add_image_widget.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/custom_radio_button.dart';
@@ -16,8 +18,6 @@ import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_type_rad
 import 'package:soft_warts_test_task/pages/widgets/app_elevated_button.dart';
 import 'package:soft_warts_test_task/pages/widgets/background_gradient_decoration.dart';
 import 'package:soft_warts_test_task/repositories/manage_todos_repository.dart';
-import 'package:soft_warts_test_task/resources/app_colors.dart';
-import 'package:soft_warts_test_task/resources/app_styles.dart';
 
 class EditTodoPage extends StatefulWidget {
   const EditTodoPage({
@@ -82,10 +82,16 @@ class _EditTodoPageState extends State<EditTodoPage> {
             ),
             actions: [
               BlocBuilder<ManageSingleTodoBloc, ManageSingleTodoState>(
+                buildWhen: (_, __) => false,
                 builder: (context, state) {
                   return IconButton(
                     splashRadius: 20,
                     onPressed: () {
+                      final hasConnection =
+                          context.read<ConnectivityBloc>().state.hasConnection;
+                      context
+                          .read<ManageSingleTodoBloc>()
+                          .add(ChangeHasConnectionFlagSingle(hasConnection));
                       context.read<ManageSingleTodoBloc>().add(UpdateTodo(
                           todoName: _nameController.text,
                           todoDescription: _descriptionController.text));
@@ -121,6 +127,12 @@ class _EditTodoPageState extends State<EditTodoPage> {
                   child: Center(
                     child: AppElevatedButton(
                         onPressed: () {
+                          final hasConnection = context
+                              .read<ConnectivityBloc>()
+                              .state
+                              .hasConnection;
+                          context.read<ManageSingleTodoBloc>().add(
+                              ChangeHasConnectionFlagSingle(hasConnection));
                           context
                               .read<ManageSingleTodoBloc>()
                               .add(DeleteTodo());
@@ -149,9 +161,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
               ),
               TodoEditorWrap(
                 child: BlocBuilder<ManageSingleTodoBloc, ManageSingleTodoState>(
-                  buildWhen: (_, __) {
-                    return false;
-                  },
+                  buildWhen: (_, __) => false,
                   builder: (context, state) {
                     return TextField(
                       controller: _descriptionController

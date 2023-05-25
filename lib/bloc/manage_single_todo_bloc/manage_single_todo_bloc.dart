@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:soft_warts_test_task/enums/fetch_status.dart';
+import 'package:soft_warts_test_task/core/enums/fetch_status.dart';
+import 'package:soft_warts_test_task/core/services/image_picker_service.dart';
 import 'package:soft_warts_test_task/models/todo_model.dart';
 import 'package:soft_warts_test_task/repositories/manage_todos_repository.dart';
-import 'package:soft_warts_test_task/services/image_picker_service.dart';
 
 part 'manage_single_todo_event.dart';
 

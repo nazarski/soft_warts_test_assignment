@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/manage_single_todo_bloc/manage_single_todo_bloc.dart';
-import 'package:soft_warts_test_task/constants/strings.dart';
+import 'package:soft_warts_test_task/core/constants/strings.dart';
+import 'package:soft_warts_test_task/core/resources/app_styles.dart';
 import 'package:soft_warts_test_task/pages/edit_todo_pages/widgets/todo_editor_wrap.dart';
-import 'package:soft_warts_test_task/resources/app_styles.dart';
 
 class AddImageWidget extends StatelessWidget {
   const AddImageWidget({

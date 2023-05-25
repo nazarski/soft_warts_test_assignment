@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soft_warts_test_task/resources/app_styles.dart';
+import 'package:soft_warts_test_task/core/resources/app_styles.dart';
 
 class ButtonTabBarItem extends StatelessWidget {
   const ButtonTabBarItem({

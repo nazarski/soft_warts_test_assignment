@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soft_warts_test_task/resources/app_colors.dart';
-import 'package:soft_warts_test_task/resources/app_styles.dart';
+import 'package:soft_warts_test_task/core/resources/app_colors.dart';
+import 'package:soft_warts_test_task/core/resources/app_styles.dart';
 
 class AppElevatedButton extends StatelessWidget {
   const AppElevatedButton({

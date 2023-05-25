@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soft_warts_test_task/bloc/todo_list_bloc/todo_list_bloc.dart';
-import 'package:soft_warts_test_task/constants/strings.dart';
+import 'package:soft_warts_test_task/core/constants/strings.dart';
 import 'package:soft_warts_test_task/pages/todo_list_page/widgets/button_tab_bar_item.dart';
 
 class ButtonTabBar extends StatefulWidget {
